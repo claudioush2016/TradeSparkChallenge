@@ -1,0 +1,45 @@
+<div class="background-image">
+    <h1> Book Store </h1>
+    <div class="book-list">
+        <div class="filter-options">
+            <select [(ngModel)]="filterCriteria" class="form-select mb-3">
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="category">Category</option>
+            </select>
+            <input type="text" placeholder="Filter by {{filterCriteria}}" [(ngModel)]="filterText" class="form-control mb-3" />
+        </div>
+        <div>
+            <label for="bookSelect">Select Book:</label>
+            <select id="bookSelect" [(ngModel)]="book_delete_id" class="form-control">
+              <option *ngFor="let book of books" [value]="book.id">{{ book.title }}</option>
+            </select>
+      
+            <label for="categoryInput">Category to Delete:</label>
+            <input id="categoryInput" type="text" [(ngModel)]="categoryToDelete" placeholder="Enter category" class="form-control"/>
+      
+            <button (click)="deleteCategory()" class="btn btn-danger mt-3">Delete Category</button>
+      
+            <p class="mt-3" *ngIf="message">{{ message }}</p>
+          </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of filteredBooks()">
+                        <td>{{ book["title"] }}</td>
+                        <td>{{ book["author"]["name"] }}</td>
+                        <td>{{ categoriesToString(book['categories']) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

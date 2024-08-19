@@ -19,8 +19,7 @@ export class BookStoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookStoreService.getBooks().subscribe((data: any[]) => {
-      this.books = data; 
-      console.log(data)
+      this.books = data;
     })
   }
 
@@ -68,7 +67,6 @@ export class BookStoreComponent implements OnInit {
               this.message = response.message;
 
           }, error => {
-            console.log(error)
             this.message = 'An error occurred. Please try again.';
           });
       } else {
